@@ -1,3 +1,3 @@
 describe Hopcat::Api::Draft do
-	pending "hello"
+	it { should respond_to :list }
 end
