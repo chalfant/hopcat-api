@@ -1,5 +1,7 @@
 # Hopcat::Api
 
+[![Build Status](https://travis-ci.org/chalfant/hopcat-api.svg?branch=master)](https://travis-ci.org/chalfant/hopcat-api)
+
 TODO: Write a gem description
 
 ## Installation
