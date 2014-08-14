@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require 'hopcat/api'
+require 'json'
+
+draft = Hopcat::Api::Draft.new
+
+puts JSON.pretty_generate(draft.list)
