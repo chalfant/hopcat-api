@@ -5,5 +5,5 @@ require 'json'
 
 get '/drafts' do
   d = Hopcat::Api::Draft.new
-  JSON.pretty_generate(d.list)
+  JSON.generate(d.list)
 end
