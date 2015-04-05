@@ -28,7 +28,7 @@ module Hopcat
 
       def item_lists
         page = Nokogiri::HTML( open(location) )
-        page.css('div.view-beer-menu div.item-list')
+        page.css('div.view-content div.view-order-beers')
       end
 
       def item_list_category(item_list)

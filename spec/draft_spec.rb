@@ -15,62 +15,62 @@ describe Hopcat::Api::Draft do
   end
 
   describe '#item_lists' do
-    it 'returns 12 item_lists' do
-      expect(d.item_lists.length).to eq 12
+    it 'returns 9 item_lists' do
+      expect(d.item_lists.length).to eq 9
     end
   end
 
   describe '#item_list_category' do
-    it 'returns IPAs when category is IPAs' do
+    it 'returns "Belgian" for first category' do
       item_list = d.item_lists[0]
-      expect(d.item_list_category(item_list)).to eq('IPAs')
+      expect(d.item_list_category(item_list)).to eq('Belgian')
     end
 
-    it 'returns Pales when category is Pales' do
+    it 'returns "Pales, IPAs, Imperial IPAs" for second category' do
       item_list = d.item_lists[1]
-      expect(d.item_list_category(item_list)).to eq('Pales')
+      expect(d.item_list_category(item_list)).to eq('Pales, IPAs, Imperial IPAs')
     end
   end
 
   describe '#items' do
-    it 'returns 10 items' do
+    it 'returns 9 items for first category' do
       item_list = d.item_lists[0]
-      expect( d.items(item_list).length ).to eq 10
+      expect( d.items(item_list).length ).to eq 9
     end
   end
 
   describe '#item_title' do
-    it 'returns "Campside – $5.5"' do
+    it 'returns "Tripel de Ripple – $5"' do
       item = d.items( d.item_lists[0] )[0]
-      expect( d.item_title(item) ).to eq "Campside – $5.5"
+      expect( d.item_title(item) ).to eq "Tripel de Ripple – $5"
     end
   end
 
   describe '#item_brewery' do
-    it 'returns "Upland Brewing Co."' do
+    it 'returns "Brugge Brasserie"' do
       item = d.items( d.item_lists[0] )[0]
-      expect( d.item_brewery(item) ).to eq "Upland Brewing Co."
+      expect( d.item_brewery(item) ).to eq "Brugge Brasserie"
     end
   end
 
   describe '#item_location' do
-    it 'returns "Bloomington, IN"' do
+    it 'returns "Indianapolis, IN"' do
       item = d.items( d.item_lists[0] )[0]
-      expect( d.item_location(item) ).to eq "Bloomington, IN"
+      expect( d.item_location(item) ).to eq "Indianapolis, IN"
     end
   end
 
   describe '#item_abv' do
-    it 'returns "4.5%"' do
+    it 'returns "10%"' do
       item = d.items( d.item_lists[0] )[0]
-      expect( d.item_abv(item) ).to eq "4.5%"
+      expect( d.item_abv(item) ).to eq "10%"
     end
   end
 
   describe '#item_style' do
-    it 'returns "American Session IPA"' do
+    it 'returns "Belgian-Style Tripel"' do
       item = d.items( d.item_lists[0] )[0]
-      expect( d.item_style(item) ).to eq "American Session IPA"
+      expect( d.item_style(item) ).to eq "Belgian-Style Tripel"
     end
   end
 
@@ -78,22 +78,13 @@ describe Hopcat::Api::Draft do
     it 'returns the correct hash' do
       item = d.items( d.item_lists[0] )[0]
       expected = {
-          title:    "Campside – $5.5",
-          brewery:  "Upland Brewing Co.",
-          location: "Bloomington, IN",
-          abv:      "4.5%",
-          style:    "American Session IPA"
+          title:    "Tripel de Ripple – $5",
+          brewery:  "Brugge Brasserie",
+          location: "Indianapolis, IN",
+          abv:      "10%",
+          style:    "Belgian-Style Tripel"
       }
       expect( d.item_to_hash(item) ).to eq expected
-    end
-  end
-
-  context 'when the style contains a page div' do
-    describe '#item_style' do
-      it 'returns a string w/o all those newlines' do
-        item = d.items( d.item_lists[6] )[2]
-        expect( d.item_style(item) ).to eq "Bourbon Barrel-Aged Vanilla Porter"
-      end
     end
   end
 
